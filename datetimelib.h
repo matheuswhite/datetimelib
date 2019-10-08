@@ -30,7 +30,7 @@ typedef struct __datetime_ext {
 
 typedef u32_t timestamp_t;
 
-bool datetime_is_lerp(u32_t year);
+bool datetime_is_leap(u32_t year);
 bool datetime_is_valid(datetime_t *datetime);
 int datetime_add_datetime(datetime_t *start, datetime_t *period, datetime_t *result);
 int datetime_days_between_dates(datetime_t *start, datetime_t *end, u32_t *result);
