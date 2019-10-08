@@ -15,11 +15,11 @@ typedef enum __weekday {
 } weekday_t;
 
 typedef struct __datetime {
-    u8_t seconds;
-    u8_t minutes;
-    u8_t hours;
-    u8_t days;
-    u8_t months;
+    u32_t seconds;
+    u32_t minutes;
+    u32_t hours;
+    u32_t days;
+    u32_t months;
     u32_t years;
 } datetime_t;
 
