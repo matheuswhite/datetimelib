@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "datetimelib_types.h"
 
+#define EINVAL 22
+
 typedef enum __weekday {
     WEEKDAY_SUNDAY = 0,
     WEEKDAY_MONDAY,
