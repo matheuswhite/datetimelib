@@ -114,7 +114,7 @@ int datetime_days_between_dates(datetime_t *start, datetime_t *end, u32_t *resul
 
     // Check datetime start and end
     if( !datetime_is_valid(start) || !datetime_is_valid(end) ){
-        return -1;
+        return -EINVAL;
     }
 
     u32_t number_of_days_before, number_of_days_after;
@@ -165,6 +165,7 @@ int datetime2timestamp(datetime_t *datetime, timestamp_t *result)
     *result += (years - 2000) * __YEAR_SECS;
 }
 
+// TODO
 int timestamp2datetime(timestamp_t *timestamp, datetime_t *result)
 {
     result->seconds = *timestamp % 60;
@@ -176,5 +177,23 @@ int timestamp2datetime(timestamp_t *timestamp, datetime_t *result)
 
 int datetime_get_weekday(datetime_t *datetime, weekday_t *result)
 {
+    static datetime_t start = {
+        .seconds = 0,
+        .minutes = 0,
+        .hours   = 0,
+        .days    = 1,
+        .months  = 1,
+        .years   = 0,
+    };
+    u32_t days = {0};
+    int err = 0;
 
+    err = datetime_days_between_dates(&start, datetime, &days);
+    if (err) {
+        return err;
+    }
+
+    *result = (days - 1 + 6) % 7;
+
+    return 0;
 }
